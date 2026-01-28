@@ -3,8 +3,8 @@ import Web3 from "web3";
 import contractABI from "../contracts/main.json";
 import profileContractABI from "../contracts/user.json";
 
-const contractAddress = "0xD03ed2100F59eD19819093eDf1bf8618cC71Dc63";
-const profileContractAddress = "0xDb17eDFBC8e9b5AAaea0fF0885E3B0f99771727E";
+const contractAddress = "0xB25EFb7dF9A7b66C8B825F19daDb6d187E5B439c";
+const profileContractAddress = "0xF588b74511E86B5de226beC74B56CaCf946b5686";
 
 
 const Connect = ({
@@ -20,13 +20,13 @@ const Connect = ({
     async function switchToSepolia() {
         try {
             await window.ethereum.request({
-                method: "wallet_swtichEhtereumChain",
+                method: "wallet_switchEthereumChain",
                 params: [{ chainId: "0xaa36a7" }]
             })
         } catch (err) {
             if (err.code === 4902) {
                 try {
-                    await window.ethereum.reques({
+                    await window.ethereum.request({
                         method: "wallet_addEthereumChain",
                         params: [{
                             chainId: "0xaa36a7",
@@ -52,7 +52,9 @@ const Connect = ({
     async function connectWallet() {
         if (window.ethereum) {
             try {
-                await window.ethereum.enable();
+                await window.ethereum.request({
+                    method: "eth_requestAccounts"
+                });
                 const networkId = await window.ethereum.request({
                     method: "net_version"
                 });

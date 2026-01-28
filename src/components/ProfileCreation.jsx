@@ -9,16 +9,23 @@ const ProfileCreation = ({
     const [loading, setLoading] = useState(false);
 
     const createProfile = async(event) => {
-        event.profentDefault();
+        event.preventDefault();
 
         try {
             setLoading(true);
-            checkProfile();
+            
+            // Call the smart contract's setProfile method
+            await profileContract.methods.setProfile(username, bio).send({
+                from: account
+            });
+            
+            // After successful transaction, check the profile
+            await checkProfile();
         } catch (error) {
-            console.error(error)
-
-        }finally{
-            setLoading(false)
+            console.error("Error creating profile:", error);
+            alert("Failed to create profile. Please try again.");
+        } finally {
+            setLoading(false);
         }
     }
 

@@ -1,70 +1,133 @@
-# Getting Started with Create React App
+# Twitter DAPP (Decentralized Application)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A decentralized Twitter-like social media application built on the Ethereum blockchain using React and Web3.js. Users can connect their MetaMask wallet, create profiles, and post tweets that are stored on smart contracts.
 
-## Available Scripts
+## 🚀 Features
 
-In the project directory, you can run:
+- **Wallet Connection**: Connect your MetaMask wallet to the application
+- **User Profiles**: Create and manage user profiles with display names and bios
+- **Post Tweets**: Share tweets that are stored immutably on the blockchain
+- **View Timeline**: Browse tweets from all users, sorted by most recent first
+- **Sepolia Network**: Runs on the Ethereum Sepolia test network
+- **User Avatars**: Auto-generated avatars for each user using DiceBear API
 
-### `npm start`
+## 📋 Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Node.js (v14 or higher)
+- npm or yarn
+- MetaMask browser extension
+- Ethereum Sepolia testnet ETH for gas fees
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Installation
 
-### `npm test`
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd twitterdappfinal
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-### `npm run build`
+3. **Configure MetaMask**
+   - Install the MetaMask browser extension
+   - Add the Sepolia test network (the app will help with this)
+   - Get test ETH from a Sepolia faucet
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🎯 Usage
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. **Start the development server**
+   ```bash
+   npm start
+   ```
+   The application will open at `http://localhost:3000`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. **Connect Your Wallet**
+   - Click "Connect Wallet" button
+   - Approve the connection in MetaMask
+   - Switch to Sepolia network (automatic if needed)
 
-### `npm run eject`
+3. **Create a Profile**
+   - Enter your desired username and bio
+   - Click "Create Profile"
+   - Confirm the transaction in MetaMask
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+4. **Post a Tweet**
+   - Type your tweet in the text area
+   - Click "Tweet" button
+   - Confirm the transaction in MetaMask
+   - Tweets appear instantly in your timeline
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+5. **View Timeline**
+   - Your timeline displays all tweets sorted by recency
+   - Avatars are generated automatically for each user
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 📁 Project Structure
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+src/
+├── App.jsx                 # Main application component
+├── index.js               # React entry point
+├── styles.css             # Application styles
+├── components/
+│   ├── Connect.jsx        # Wallet connection component
+│   ├── ProfileCreation.jsx # User profile creation form
+│   ├── AddTweet.jsx       # Tweet composition form
+│   └── Tweets.jsx         # Tweet display component
+└── contracts/
+    ├── main.json          # Tweet contract ABI
+    └── user.json          # User profile contract ABI
+```
 
-## Learn More
+## 🔗 Smart Contracts
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The application interacts with two smart contracts on Sepolia:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Tweet Contract** (`0xB25EFb7dF9A7b66C8B825F19daDb6d187E5B439c`)
+  - `createTweet(string)` - Post a new tweet
+  - `getAllTweets(address)` - Retrieve all tweets from an account
 
-### Code Splitting
+- **Profile Contract** (`0xF588b74511E86B5de226beC74B56CaCf946b5686`)
+  - `setProfile(string, string)` - Create/update user profile
+  - `getProfile(address)` - Retrieve user profile data
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 📦 Dependencies
 
-### Analyzing the Bundle Size
+- **React** (^19.2.3) - UI framework
+- **Web3.js** (^4.16.0) - Ethereum blockchain interaction
+- **react-scripts** (5.0.1) - Build and development tools
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🔄 How It Works
 
-### Making a Progressive Web App
+1. **Wallet Connection**: Uses MetaMask to connect to the user's Ethereum wallet
+2. **Profile Management**: User profiles are stored on the blockchain, retrieved on app load
+3. **Tweet Creation**: Tweets are submitted to the smart contract and stored on-chain
+4. **Timeline**: Fetches all tweets from the contract and displays them in reverse chronological order
+5. **User Display**: Shows shortened wallet addresses or usernames depending on context
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 🧪 Available Scripts
 
-### Advanced Configuration
+- `npm start` - Run the app in development mode
+- `npm build` - Build the app for production
+- `npm test` - Run tests
+- `npm eject` - Eject from create-react-app (irreversible)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## ⚠️ Important Notes
 
-### Deployment
+- All transactions require gas fees (use Sepolia testnet ETH)
+- Data is stored permanently on the blockchain
+- The app requires MetaMask or a Web3-compatible browser wallet
+- Switch to Sepolia testnet in MetaMask for proper functionality
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 🔐 Security Considerations
 
-### `npm run build` fails to minify
+- Always verify contract addresses before interacting
+- Use testnet for development and testing
+- Never share your private keys
+- Audit smart contracts before production deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 📝 License
+
+This project is private and for educational purposes.
